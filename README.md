@@ -63,6 +63,13 @@ Daily cron ─► /api/cron/refresh ─► Meta + Pipes ─► join ─► compu
 The page never calls Meta or Pipes. It reads one versioned snapshot, so a
 mid-run refresh can never render half-written data.
 
+**Schedule:** `0 20 * * *` in `vercel.json` — 20:00 UTC daily (early afternoon
+for the US-timezone ad accounts), so Pipes revenue has settled before the pull.
+Daily rather than weekly even though the report reads Monday-to-Sunday: the
+trailing-30 figures move every day, and a failed pull self-heals the next day
+instead of leaving stale numbers up for a week. Re-runs are safe — each writes a
+new snapshot and the page reads the newest complete one.
+
 ### Module boundaries
 
 - **`lib/metrics/`** — pure. Imports nothing from Next, Postgres, or the API

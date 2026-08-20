@@ -13,6 +13,16 @@ export const maxDuration = 300;
 /**
  * Daily refresh entrypoint (Vercel Cron).
  *
+ * Scheduled `0 20 * * *` in vercel.json — 20:00 UTC daily, which is early
+ * afternoon for the US-timezone ad accounts. Spec section 8 asks for an
+ * afternoon run so Pipes revenue has settled before the pull.
+ *
+ * Daily rather than weekly, even though the report's cadence is Monday: the
+ * trailing-30 figures move every day, and a failed pull self-heals tomorrow
+ * instead of leaving stale numbers up for a week. Re-running is safe — each
+ * run writes a new snapshot for the same report date, and the page reads the
+ * newest complete one.
+ *
  * Authenticates with CRON_SECRET rather than a session cookie, which is why
  * middleware excludes /api/cron/*.
  */
