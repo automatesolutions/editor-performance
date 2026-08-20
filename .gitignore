@@ -1,0 +1,17 @@
+node_modules/
+.next/
+out/
+build/
+
+# Secrets — never commit. See .env.example for the required keys.
+.env
+.env.local
+.env*.local
+
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+.vercel
+
+# Local agent/editor state
+.claude/
