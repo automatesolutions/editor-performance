@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Design tokens from the handoff mockup. Kept as CSS variables as well as
+ * Tailwind theme values so inline SVG (sparklines, verdict dots) can reach
+ * them without a class.
+ */
+:root {
+  --canvas: oklch(98% 0.003 250);
+  --card: #ffffff;
+  --card-border: oklch(91% 0.005 250);
+  --rule: oklch(93% 0.004 250);
+  --ink: oklch(20% 0.01 250);
+  --muted: oklch(55% 0.01 250);
+  --positive: oklch(55% 0.15 145);
+  --negative: oklch(55% 0.19 25);
+  --neutral: oklch(65% 0.01 250);
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+}
